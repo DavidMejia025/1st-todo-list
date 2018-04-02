@@ -17,3 +17,7 @@ i.glyphicon-ok {
   float: right;
   margin-right: 20px;
 }
+
+select{
+width: 360px;
+}

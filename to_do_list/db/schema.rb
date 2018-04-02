@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402004430) do
+ActiveRecord::Schema.define(version: 20180402002252) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.boolean "checked"
+    t.integer "category_id"
+    t.integer "calendar_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_activities_on_calendar_id"
+    t.index ["category_id"], name: "index_activities_on_category_id"
+  end
 
   create_table "calendars", force: :cascade do |t|
     t.date "day"
@@ -22,17 +33,6 @@ ActiveRecord::Schema.define(version: 20180402004430) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string "name"
-    t.integer "category_id"
-    t.integer "calendar_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "checked"
-    t.index ["calendar_id"], name: "index_todos_on_calendar_id"
-    t.index ["category_id"], name: "index_todos_on_category_id"
   end
 
 end

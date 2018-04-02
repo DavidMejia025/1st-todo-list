@@ -1,35 +1,35 @@
 require "sinatra"
 require "sinatra/activerecord"
-require "./models/todo.rb"
+require "./models/activity.rb"
 require "./models/category.rb"
 require "./models/calendar.rb"
-
+require "pry"
 
 set :database, "sqlite3:myblogdb.sqlite3"
 
 get '/' do
-	redirect '/to_do'
+	redirect '/activities'
 end
 
-get '/to_do' do 
-	@todo = ToDo.all
+get '/activities' do 
+	@activities = Activity.all
 	erb :index
 end
 
 
-post '/tareas' do 
-  @tarea = Tarea.create(params[:tarea])
-  puts @tarea
-  redirect '/tareas'
+post '/activity' do 
+  category = Category.find_by(name:params[:activity]["category"])
+  @activity = category.activities.create(params[:activity]["task"])
+  redirect '/activity'
 end
 
-get '/tareas/edit/:id' do
-  @tarea = Tarea.update(params[:id])
-  puts "tareass"
-  redirect '/tareas'
+get '/activity/edit/:id' do
+  @activity = activity.update(params[:id])
+  puts "activitys"
+  redirect '/activity'
 end
 
-get '/tareas/delete/:id' do
-    @tarea = Tarea.destroy(params[:id])
-    redirect '/tareas'
+get '/activity/delete/:id' do
+    @activity = activity.destroy(params[:id])
+    redirect '/activity'
 end

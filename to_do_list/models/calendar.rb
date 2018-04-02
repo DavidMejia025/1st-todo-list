@@ -1,3 +1,3 @@
 class Calendar < ActiveRecord::Base
- has_many :todos
+ has_many :activities
 end
