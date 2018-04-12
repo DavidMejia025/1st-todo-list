@@ -3,16 +3,27 @@ require "sinatra/activerecord"
 require "./models/activity.rb"
 require "./models/category.rb"
 require "./models/calendar.rb"
+require "./models/todo.rb"
 require "pry"
 
 set :database, "sqlite3:myblogdb.sqlite3"
 
 get '/' do
-	redirect '/activities'
+	redirect '/todo'
 end
 
-get '/activities' do 
-	@activities = Activity.all
+get '/todo' do
+  @todos = ToDo.all
+  erb :index
+end
+
+post '/todo' do
+  @todo = ToDo.create(name: params[:name])
+  redirect "/todo"
+end
+
+get '/todo/:id/activities' do 
+	@activities = ToDo.find(params[:id])
 	erb :index
 end
 
