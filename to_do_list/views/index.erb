@@ -19,7 +19,8 @@
         <tbody>
           <% @todos.each do |todo| %>
             <tr>
-              <td> <a href="/todo/<%= todo.id %>"> <%=  todo.name %></a></td>
+              <td> <a href="/todo/<%= todo.id %>"> <%=  todo.name %></a> <p><a href="/todo/<%=todo.id%>/done">One more day</a></p></td>
+
             <% end %>
           </tr>
         </tbody>
@@ -27,3 +28,4 @@
     </div>
   </div>
 </div>
+
