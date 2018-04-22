@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412000053) do
+ActiveRecord::Schema.define(version: 20180416004529) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -19,8 +19,11 @@ ActiveRecord::Schema.define(version: 20180412000053) do
     t.integer "calendar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "to_do_id"
+    t.integer "count"
     t.index ["calendar_id"], name: "index_activities_on_calendar_id"
     t.index ["category_id"], name: "index_activities_on_category_id"
+    t.index ["to_do_id"], name: "index_activities_on_to_do_id"
   end
 
   create_table "calendars", force: :cascade do |t|
@@ -33,6 +36,13 @@ ActiveRecord::Schema.define(version: 20180412000053) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dones", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "activity_id"
+    t.index ["activity_id"], name: "index_dones_on_activity_id"
   end
 
   create_table "to_dos", force: :cascade do |t|

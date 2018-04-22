@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="titles">
+    <h1> <%= @activity %> :</h1>
+    <h3> <%= @activity.count %></h3>
+  </div>
+  <div class="points">
+    <% @dones.each do  |done| %>
+      <div class="point">
+        <p> <%= done.created_at.month %>, <%= done.created_at.day %></p>
+      </div> 
+      <% end %>
+  </div>
+</div>  
