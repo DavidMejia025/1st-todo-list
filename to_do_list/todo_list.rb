@@ -20,6 +20,7 @@ end
 
 post '/todo' do
   @todo = ToDo.create(name: params[:todo]["name"])
+  @done =  @todo.dones.create
   redirect "/todo"
 end
 
@@ -29,21 +30,39 @@ get '/todo/:id' do
 	erb :show
 end
 
+get '/todo/:id/done' do
+  @todo = ToDo.find(params[:id])
+  @todo.dones.create
+  redirect "/todo/#{@todo.id}"
+end
 
 post '/todo/activity/:id' do 
   todo = ToDo.find(params[:id])
   category = Category.find_by(name:params[:activity]["category"])
   @activity = todo.activities.create({name:params[:activity]["task"],category_id:category.id,count:1})
-  binding.pry
+  @activity.dones.create
   redirect "/todo/#{todo.id}"
 end
 
 get '/todo/activity/edit/:id' do
   @activity = Activity.find(params[:id])
-  @activity.dones.create()
-  @dones = Done.all
-  @activity.update(count:@activity.done(@activity.count))
+  @activity.update(count:@activity.dones.count)
+  @todo = @activity.to_do
+  @dones_todo = @todo.dones
+  @dones_todo = @dones_todo.order("created_at ASC") 
+  @dones_activity = @activity.dones
   erb :edit
+end
+
+post 'todo/category' do
+  @category = Category.create
+  redirect '/todo'
+end
+
+get '/todo/activity/:id/done' do
+  @activity = Activity.find(params[:id])
+  @activity.dones.create
+  redirect "/todo/activity/#{activity.id}"
 end
 
 get '/todo/activity/delete/:id' do

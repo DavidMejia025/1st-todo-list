@@ -1,2 +1,3 @@
-console.log("JQuery conectado")
-
+$( document ).ready(function() {
+    console.log( "ready!" );
+});

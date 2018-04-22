@@ -1,13 +1,26 @@
 <div class="container">
   <div class="titles">
-    <h1> <%= @activity %> :</h1>
+    <h1> <%= @activity.name %> :</h1>
     <h3> <%= @activity.count %></h3>
   </div>
-  <div class="points">
-    <% @dones.each do  |done| %>
-      <div class="point">
-        <p> <%= done.created_at.month %>, <%= done.created_at.day %></p>
-      </div> 
+    <div class="done_container" style="display:flex;flex-direction:row">
+      <%   @dones_todo.each do  |done_todo| %>
+        <div class="dones" style="display:flex;flex-direction: column">
+        <% @dones_activity.each do  |done_activity| %>
+          <div class="point">
+            <% if done_todo.created_at.day == done_activity.created_at.day %>
+             <div style="background-color: blue; height:50px">
+            </div>
+            <% else %>
+             <div style="background-color: white; height:50px">
+            </div>
+            <% end %>
+          </div> 
+        <% end %>
+        <div class="point" style="border:solid black">
+          <p> <%= done_todo.created_at.year %>-<%= done_todo.created_at.month %>-<%= done_todo.created_at.day%></p>
+        </div>
+        </div> 
       <% end %>
-  </div>
+    </div>
 </div>  
