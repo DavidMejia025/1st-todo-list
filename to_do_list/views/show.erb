@@ -1,35 +1,32 @@
 <div class="container">
-
-
 <div class="row">
-	<div class="col-md-4 col-md-offset-4">
-	<h1>NEW TASK:</h1>			
-		<form action="activity", id="new_task",
-		" method="POST">
-			<div class="form-group">
-				<input class= "form-control" type="text" placeholder="Task" name=activity[task]">
-			</div>
+  <div class="col-md-4 col-md-offset-4">
+  <h1>NEW TASK:</h1>      
+    <form action="activity/<%= @todo.id %>", id="new_task"," method="POST">
       <div class="form-group">
-        <select name=activity[category]" form="new_task">
+        <input class= "form-control" type="text" placeholder="Task" name=activity[task]>
+      </div>
+      <div class="form-group">
+        <select name=activity[category] form="new_task">
           <%  Category.all.each do |category|  %>
           <option value="<%= category.name %>"> <%=  category.name%> </option>
           <% end %>
         </select>
       </div>
-			<div class="form-group">
-				<input class="btn btn-primary btn-block" type="submit" value="Create">
-			</div>
-		</form>
-	</div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-block" type="submit" value="Create">
+      </div>
+    </form>
+  </div>
 </div>
 <div class="row">
-	<div class="col-md-4 col-md-offset-1">	  
-	   	<h2>To do:</h2>
+  <div class="col-md-4 col-md-offset-1">    
+      <h2>To do:</h2>
       <% if @activities %>
       <% @activities.each do |activity| %>
             <% if activity.checked==nil %>
           <ul class="list-group"> 
-            <li class="list-group-item"> <%= activity.name %> <a href="activity/delete/<%activity.id%>">   <i class="glyphicon glyphicon-remove"></i></a>  <a href="activity/edit/<%activity.id%>"> <i class="glyphicon glyphicon-ok"></i></a></li>
+            <li class="list-group-item"> <a href="/todo/activity/edit/<%= activity.id %>"> <%= activity.name %> </a> <a href="/todo/activity/delete/<%= activity.id %>">  <i class="glyphicon glyphicon-remove"></i></a>  <a href=""><i class="glyphicon glyphicon-ok"></i></a></li>
           </ul>
         <% end %>
       <% end %>
@@ -39,7 +36,7 @@
       <% @activities.each do |activity| %>
           <% if activity.checked==true %>
           <ul class="list-group undone">
-              <li class="list-group-item">  <%=activity.name %>  <a href="activity/delete/<%activity.id%>"> <i class="glyphicon glyphicon-remove"></i></a></li>
+              <li class="list-group-item">  <%=activity.name %>  <a href="todo/activity/delete/<%activity.id%>"> <i class="glyphicon glyphicon-remove"></i></a></li>
           </ul>
         <% end %>
       <% end %>

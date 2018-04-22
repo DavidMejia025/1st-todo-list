@@ -6,7 +6,7 @@
           <form action="todo", id="new_to_do",
           " method="POST">
             <div class="form-group">
-              <input class= "form-control" type="text" placeholder="Name" name=todo[name]">
+              <input class= "form-control" type="text" placeholder="Name" name=todo[name]>
             </div>
             <div class="form-group">
               <input class="btn btn-primary btn-block" type="submit" value="Create">
@@ -15,17 +15,13 @@
        <table class="table">
         <thead>
           <th>Name</th>
-          <th>Show</th>
-          <th>Edit</th>
-          <th>Delete</th>
         </thead>
         <tbody>
           <% @todos.each do |todo| %>
-          <td>todo.name</td>
-          <td> show</td>
-          <td> edit</td>
-          <td> delete</td>
-          <% end %>
+            <tr>
+              <td> <a href="/todo/<%= todo.id %>"> <%=  todo.name %></a></td>
+            <% end %>
+          </tr>
         </tbody>
       </table>
     </div>
