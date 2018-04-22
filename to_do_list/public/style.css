@@ -21,11 +21,6 @@ i.glyphicon-ok {
 select{
 width: 360px;
 }
-
-h1{
-  color: red;
-}
-
 .done_container {
   display: flex;
   flex-direction: row;
