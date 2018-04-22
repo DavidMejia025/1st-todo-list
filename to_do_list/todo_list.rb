@@ -33,7 +33,13 @@ end
 get '/todo/:id/done' do
   @todo = ToDo.find(params[:id])
   @todo.dones.create
-  redirect "/todo/#{@todo.id}"
+  redirect "/todo"
+end
+
+get '/todo/activity/:id/done' do
+  @activity = Activity.find(params[:id])
+  @activity.dones.create
+  redirect "/todo/activity/edit/#{@activity.id}"
 end
 
 post '/todo/activity/:id' do 
@@ -54,16 +60,12 @@ get '/todo/activity/edit/:id' do
   erb :edit
 end
 
-post 'todo/category' do
-  @category = Category.create
-  redirect '/todo'
+post '/todo/:id/category' do
+  @todo = ToDo.find(params[:id])
+  @category = @todo.categories.create(name: params[:category]["name"])
+  redirect "/todo/#{@todo.id}"
 end
 
-get '/todo/activity/:id/done' do
-  @activity = Activity.find(params[:id])
-  @activity.dones.create
-  redirect "/todo/activity/#{activity.id}"
-end
 
 get '/todo/activity/delete/:id' do
     @activity = Activity.find(params[:id])
