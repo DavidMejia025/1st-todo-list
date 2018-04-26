@@ -21,17 +21,14 @@ i.glyphicon-ok {
 select{
 width: 360px;
 }
-
-h1{
-  color: red;
-}
-
 .done_container {
   display: flex;
   flex-direction: row;
-  border:solid red;
+  margin-top: 80px;
 }
 
-.titles {
-  border:solid red;
+#category{
+  border: 1px solid #286090;
+  font-size:13px;
+  background-color: white;
 }

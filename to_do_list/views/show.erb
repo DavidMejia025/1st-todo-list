@@ -12,23 +12,23 @@
           <option value="<%= category.name %>"> <%=  category.name%> </option>
           <% end %>
         </select>
-        <button id="category" style="display:block"> Add new Category</button>
-        <div class="category_form" style="">
-           <form action="todo/category", id="new_category",
-          " method="POST">
-            <div class="form-group">
-              <input class= "form-control" type="text" placeholder="Name" name=category[name]>
-            </div>
-            <div class="form-group">
-              <input class="btn btn-primary btn-block" type="submit" value="Create">
-            </div>
-          </form>
         </div>
-      </div>
       <div class="form-group">
-        <input class="btn btn-primary btn-block" type="submit" value="Create">
+        <input class="btn btn-primary btn-block" type="submit" value="Create new task">
       </div>
     </form>
+    <button id="category" style="display:block"> Add new Category</button>
+    <div class="category_form" style="display:none">
+       <form action="/todo/<%=@todo.id %>/category", id="new_category",
+      " method="POST">
+        <div class="form-group">
+          <input class= "form-control" type="text" placeholder="Name" name=category[name]>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-primary btn-block send_category" type="submit" value="Create new Category">
+        </div>
+      </form>
+      </div>
   </div>
 </div>
 <div class="row">
@@ -38,7 +38,7 @@
       <% @activities.each do |activity| %>
             <% if activity.checked==nil %>
           <ul class="list-group"> 
-            <li class="list-group-item"> <a href="/todo/activity/edit/<%= activity.id %>"> <%= activity.name %> </a> <a href="/todo/activity/delete/<%= activity.id %>">  <i class="glyphicon glyphicon-remove"></i></a>  <a href=""><i class="glyphicon glyphicon-ok"></i></a></li>
+            <li class="list-group-item"> <a href="/todo/activity/edit/<%= activity.id %>"> <%= activity.name %> </a> <a href="/todo/activity/delete/<%= activity.id %>">  <i class="glyphicon glyphicon-remove"></i></a>  <a href="/todo/activity/<%= activity.id%>/done"><i class="glyphicon glyphicon-ok"></i></a></li>
           </ul>
         <% end %>
       <% end %>
