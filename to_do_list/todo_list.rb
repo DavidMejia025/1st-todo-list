@@ -10,6 +10,7 @@ require "pry"
 set :database, "sqlite3:myblogdb.sqlite3"
 
 get '/' do
+  binding.pry
 	redirect '/todo'
 end
 
