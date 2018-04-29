@@ -12,14 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20180422134033) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.boolean "checked"
-    t.integer "category_id"
-    t.integer "calendar_id"
+    t.bigint "category_id"
+    t.bigint "calendar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "to_do_id"
+    t.bigint "to_do_id"
     t.integer "count"
     t.index ["calendar_id"], name: "index_activities_on_calendar_id"
     t.index ["category_id"], name: "index_activities_on_category_id"
@@ -36,15 +39,15 @@ ActiveRecord::Schema.define(version: 20180422134033) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "to_do_id"
+    t.bigint "to_do_id"
     t.index ["to_do_id"], name: "index_categories_on_to_do_id"
   end
 
   create_table "dones", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "activity_id"
-    t.integer "to_do_id"
+    t.bigint "activity_id"
+    t.bigint "to_do_id"
     t.index ["activity_id"], name: "index_dones_on_activity_id"
     t.index ["to_do_id"], name: "index_dones_on_to_do_id"
   end

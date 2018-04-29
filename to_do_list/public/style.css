@@ -28,7 +28,12 @@ width: 360px;
 }
 
 #category{
-  border: 1px solid #286090;
+  border-radius: 25px;
   font-size:13px;
-  background-color: white;
+  background-color: red;
+  display:block;
+}
+
+.date{
+  margin:20px !important;
 }

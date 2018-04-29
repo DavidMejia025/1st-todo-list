@@ -7,8 +7,6 @@ require "./models/todo.rb"
 require "./models/done.rb"
 require "pry"
 
-set :database, "sqlite3:myblogdb.sqlite3"
-
 get '/' do
   binding.pry
 	redirect '/todo'
